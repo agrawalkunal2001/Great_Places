@@ -24,11 +24,12 @@ class _ImageInputState extends State<ImageInput> {
       return;
     }
     setState(() {
-      _storedImage = File(imageFile!.path);
+      _storedImage = File(imageFile.path);
     });
     final appDirectory = await syspaths
         .getApplicationDocumentsDirectory(); // It is a directory on the device which is reserved for app data.
-    final fileName = path.basename(imageFile!.path);
+    final fileName = path.basename(
+        imageFile.path); // Gets the part of the path after the last separator
     final savedImage =
         await File(imageFile.path).copy('${appDirectory.path}/$fileName');
     widget.onSelectImage(savedImage);

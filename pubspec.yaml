@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   image_picker: null
+  location: null
   path: null
   path_provider: null
   provider: null
