@@ -9,7 +9,7 @@ class DBHelper {
     return sql.openDatabase(path.join(dbPath, "places.db"),
         onCreate: (db, version) {
       return db.execute(
-          "CREATE TABLE user_places(id TEXT PRIMARY KEY, title TEXT, image TEXT)");
+          "CREATE TABLE user_places(id TEXT PRIMARY KEY, title TEXT, image TEXT, loc_lat REAL, loc_lng REAL, address TEXT)");
     }, // This creates a database if no path is found
         version:
             1); // openDatabase requires db folder and db name as well. It opens a database if dbPath is not null and creates a new one otherwise.

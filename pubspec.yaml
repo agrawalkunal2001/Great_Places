@@ -31,6 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_maps_flutter: null
+  http: ^0.13.4
   image_picker: null
   location: null
   path: null
