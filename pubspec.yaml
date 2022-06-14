@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: null
   flutter:
     sdk: flutter
+  google_maps_flutter: null
   image_picker: null
   location: null
   path: null
