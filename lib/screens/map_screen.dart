@@ -51,12 +51,14 @@ class _MapScreenState extends State<MapScreen> {
           zoom: 16,
         ),
         onTap: widget.isSelecting ? _selectLocation : null,
-        markers: _pickedLocation == null
+        markers: (_pickedLocation == null && widget.isSelecting)
             ? {}
             : {
                 Marker(
                   markerId: MarkerId("m1"),
-                  position: _pickedLocation as LatLng,
+                  position: _pickedLocation ??
+                      LatLng(widget.initialLocation.latitude as double,
+                          widget.initialLocation.longitude as double),
                 ),
               }, // Markers take in a set which is like a map but instead of key value pairs, it needs just values and all values must be unique.
       ),
