@@ -16,11 +16,30 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  LatLng? _pickedLocation;
+
+  void _selectLocation(LatLng position) {
+    setState(() {
+      _pickedLocation = position;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Select  Location"),
+        actions: <Widget>[
+          if (widget.isSelecting)
+            IconButton(
+              icon: Icon(Icons.check),
+              onPressed: _pickedLocation == null
+                  ? null
+                  : () {
+                      Navigator.of(context).pop(_pickedLocation);
+                    },
+            ),
+        ],
       ),
       body: GoogleMap(
         // It assumes the height and width of the parent widget
@@ -31,6 +50,15 @@ class _MapScreenState extends State<MapScreen> {
           ),
           zoom: 16,
         ),
+        onTap: widget.isSelecting ? _selectLocation : null,
+        markers: _pickedLocation == null
+            ? {}
+            : {
+                Marker(
+                  markerId: MarkerId("m1"),
+                  position: _pickedLocation as LatLng,
+                ),
+              }, // Markers take in a set which is like a map but instead of key value pairs, it needs just values and all values must be unique.
       ),
     );
   }
